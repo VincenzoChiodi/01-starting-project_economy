@@ -1,0 +1,34 @@
+<form (ngSubmit)="createInvestment()" >
+    <!-- Prima riga -->
+    <div style="display: flex; gap: 1rem;">
+        <div style="flex: 1;">
+          <label for="initial-investment">Initial Investment:</label>
+          <input type="number" id="initial-investment" name="initialInvestment" [(ngModel)]="newIntialValue" />
+        </div>
+    
+        <div style="flex: 1;">
+          <label for="annual-investment">Annual Investment:</label>
+          <input type="number" id="annual-investment" name="annualInvestment" [(ngModel)]="newAnnualInvestment"/>
+        </div>
+      </div>
+  
+    <!-- Seconda riga -->
+    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+        <div style="flex: 1;">
+        <label for="expected-return">Expected Return (%):</label>
+        <input type="number" id="expected-return" name="expectedReturn" [(ngModel)]="newExpetedReturn"/>
+        </div>
+
+        <div style="flex: 1;">
+        <label for="duration">Duration (years):</label>
+        <input type="number" id="duration" name="duration" [(ngModel)]="newInvestmentDuration" />
+        </div>
+    </div>
+  
+    <div></div>
+    <!-- Terza riga -->
+    <div style="margin-top: 1.5rem; text-align: center;">
+      <button type="submit">Calculate</button>
+    </div>
+</form>
+
