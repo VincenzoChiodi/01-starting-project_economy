@@ -1,4 +1,4 @@
-@if(!results){
+@if(!results()){
   <P class="center">Immetti un nuovo investimento</P>
 } @else {
   <table>
@@ -13,7 +13,7 @@
     </thead>
     <tbody>
        
-        @for(res of results;track res.year) {
+        @for(res of results();track res.year) {
             <tr>
             <td>{{res.year}}</td>
             <td>{{res.valueEndOfYear | currency:"EUR" }}</td>
