@@ -1,8 +1,8 @@
-import { Component,output,signal} from '@angular/core';
+import { Component,signal} from '@angular/core';
 import { FormsModule } from '@angular/forms'; // <-- importa FormsModule
 
+import { InvestmentService } from '../../investment.service';
 
-import type { Investment } from '../../investment.model';
 @Component({
   selector: 'app-user-input',
   standalone: true,
@@ -11,19 +11,28 @@ import type { Investment } from '../../investment.model';
   styleUrl: './user-input.component.css'
 })
 export class UserInputComponent {
-  calculate = output<Investment>();
+  // calculate = output<Investment>();
   newIntialValue = signal('0');
   newAnnualInvestment = signal('0');
   newExpetedReturn = signal('5');
   newInvestmentDuration = signal ('10');
- 
+
+  constructor(private investmentService: InvestmentService) {
+   
+  }
   createInvestment(){
-      this.calculate.emit({
-        initialInvestment: +this.newIntialValue(),
-        annualInvestment: +this.newAnnualInvestment(),
-        expectedReturn: +this.newExpetedReturn(),
-        duration: +this.newInvestmentDuration()
-      });
+    this.investmentService.calculateInvestmentResults({
+      initialInvestment: +this.newIntialValue(),
+      annualInvestment: +this.newAnnualInvestment(),
+      expectedReturn: +this.newExpetedReturn(),
+      duration: +this.newInvestmentDuration()
+    })
+      // this.calculate.emit({
+      //   initialInvestment: +this.newIntialValue(),
+      //   annualInvestment: +this.newAnnualInvestment(),
+      //   expectedReturn: +this.newExpetedReturn(),
+      //   duration: +this.newInvestmentDuration()
+      // });
       this.newIntialValue.set('0');
       this.newAnnualInvestment.set('0');
       this.newExpetedReturn.set('5');
